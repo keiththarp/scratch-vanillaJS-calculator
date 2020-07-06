@@ -1,0 +1,34 @@
+.unit {
+  padding: 8px;
+  width: 465px;
+  height: 558px;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: rgb(151, 166, 180);
+}
+.display {
+  padding-right: 8px;
+  text-align: right;
+  font-size: 3em;
+  width: 445px;
+  height: 53px;
+  background-color: azure;
+  margin: 8px;
+}
+.button {
+  width: 100px;
+  height: 80px;
+  padding: 5px;
+  font-size: x-large;
+  background-color: azure;
+  margin: 8px;
+}
+
+.clear-button {
+  background-color: green;
+  color: white;
+}
+
+.equals-button {
+  width: 100%;
+}
