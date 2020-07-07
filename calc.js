@@ -3,24 +3,35 @@ const minusFunction = (a, b) => a - b;
 const productFunction = (a, b) => a * b;
 const divisionFunction = (a, b) => a / b;
 
-let displayScreenOutput = "0";
 const display = document.getElementById("display");
 
-function logInteger(num) {
-  console.log(typeof num);
-  if (displayScreenOutput === "0") {
-    displayScreenOutput = num;
-    display.innerHTML = displayScreenOutput;
-  } else {
-    displayScreenOutput = displayScreenOutput.concat(num);
-    display.innerHTML = displayScreenOutput;
-  }
+let tempVar = "0";
 
-  console.log(displayScreenOutput);
+function logInteger(num) {
+  tempVar.toString();
+  if (tempVar === "0") {
+    tempVar = num;
+  } else {
+    tempVar = tempVar.concat(num);
+  }
+  display.innerHTML = tempVar;
+  console.log(tempVar);
 }
-let savedValue = "";
 let operator = "";
+let holdingVar = "0";
+
 function operatorKey(op) {
+  if (operator === "") {
+    assignOperator(op);
+    holdingVar = parseFloat(tempVar);
+    tempVar = "0";
+    // equalsKey();
+  } else if (operator !== "") {
+    equalsKey();
+    assignOperator(op);
+  }
+}
+function assignOperator(op) {
   if (op === "+") {
     operator = "+";
   } else if (op === "-") {
@@ -30,46 +41,32 @@ function operatorKey(op) {
   } else {
     operator = "/";
   }
-
-  if (savedValue === "") {
-    savedValue = parseFloat(displayScreenOutput);
-    console.log(savedValue, typeof savedValue);
-    displayScreenOutput = "0";
-  } else {
-    equalsKey()
-  }
-
-
 }
 
 function equalsKey() {
-  console.log(displayScreenOutput, typeof displayScreenOutput);
-  displayScreenOutput = parseFloat(displayScreenOutput);
+  tempVar = parseFloat(tempVar);
+  holdingVar = parseFloat(holdingVar);
 
   if (operator === "+") {
-    savedValue = sumFunction(savedValue, displayScreenOutput);
+    holdingVar = sumFunction(holdingVar, tempVar);
   } else if (operator === "-") {
-    savedValue = minusFunction(savedValue, displayScreenOutput);
+    holdingVar = minusFunction(holdingVar, tempVar);
   } else if (operator === "*") {
-    savedValue = productFunction(savedValue, displayScreenOutput);
+    holdingVar = productFunction(holdingVar, tempVar);
   } else {
-    savedValue = divisionFunction(savedValue, displayScreenOutput);
+    holdingVar = divisionFunction(holdingVar, tempVar);
   }
-  display.innerHTML = savedValue;
-  console.log(savedValue);
-  console.log(typeof savedValue);
-  displayScreenOutput = savedValue;
+  display.innerHTML = holdingVar;
+  tempVar = "0";
+  operator = "";
 }
 
 function clearKey() {
-  if (displayScreenOutput === "") {
-    savedValue = "";
+  if (tempVar === "0") {
+    holdingVar = "0";
     display.innerHTML = "0";
   } else {
-    displayScreenOutput = "";
-    display.innerHTML = savedValue;
+    tempVar = "0";
+    display.innerHTML = holdingVar;
   }
-
 }
-
-
