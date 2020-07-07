@@ -1,7 +1,11 @@
 const sumFunction = (a, b) => a + b;
 const minusFunction = (a, b) => a - b;
 const productFunction = (a, b) => a * b;
-const divisionFunction = (a, b) => a / b;
+function divisionFunction(a, b) {
+  if (b === 0) {
+    return "undefined";
+  } else return a / b;
+}
 
 const display = document.getElementById("display");
 
@@ -21,7 +25,10 @@ let operator = "";
 let holdingVar = "0";
 
 function operatorKey(op) {
-  if (operator === "") {
+  if (tempVar === "0" && operator === "") {
+    console.log("first OP process");
+    assignOperator(op);
+  } else if (operator === "") {
     assignOperator(op);
     holdingVar = parseFloat(tempVar);
     tempVar = "0";
@@ -33,12 +40,16 @@ function operatorKey(op) {
 }
 function assignOperator(op) {
   if (op === "+") {
+    console.log("what's up?");
     operator = "+";
   } else if (op === "-") {
+    console.log("what's up?");
     operator = "-";
   } else if (op === "*") {
+    console.log("what's up?");
     operator = "*";
-  } else {
+  } else if (op === "/") {
+    console.log("what's up?");
     operator = "/";
   }
 }
@@ -53,7 +64,7 @@ function equalsKey() {
     holdingVar = minusFunction(holdingVar, tempVar);
   } else if (operator === "*") {
     holdingVar = productFunction(holdingVar, tempVar);
-  } else {
+  } else if (operator === "/") {
     holdingVar = divisionFunction(holdingVar, tempVar);
   }
   display.innerHTML = holdingVar;

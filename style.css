@@ -1,9 +1,14 @@
+.main h1,
+p {
+  text-align: center;
+}
 .unit {
   padding: 8px;
   width: 465px;
   height: 558px;
   display: flex;
   flex-wrap: wrap;
+  margin: auto;
   background-color: rgb(151, 166, 180);
 }
 .display {
